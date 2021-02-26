@@ -148,7 +148,14 @@ namespace ClickHouse.Ado
         private static readonly Regex ParamRegex = new Regex("[@:](?<n>([a-z_][a-z0-9_]*)|[@:])", RegexOptions.Compiled | RegexOptions.IgnoreCase);
         private string SubstituteParameters(string commandText)
         {
-            return ParamRegex.Replace(commandText, m => m.Groups["n"].Value == ":" || m.Groups["n"].Value == "@" ? m.Groups["n"].Value : Parameters[m.Groups["n"].Value].AsSubstitute());
+            string returnedCommand = commandText;
+
+            if (Parameters.Count != 0)
+            {
+                returnedCommand = ParamRegex.Replace(commandText, m => m.Groups["n"].Value == ":" || m.Groups["n"].Value == "@" ? m.Groups["n"].Value : Parameters[m.Groups["n"].Value].AsSubstitute());
+            }
+
+            return returnedCommand;
         }
 
         public int ExecuteNonQuery()
