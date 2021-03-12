@@ -134,7 +134,14 @@ namespace ClickHouse.Ado {
             connection.Formatter.ReadResponse();
         }
 
-        private string SubstituteParameters(string commandText) =>
-            ParamRegex.Replace(commandText, m => m.Groups["n"].Value == ":" || m.Groups["n"].Value == "@" ? m.Groups["n"].Value : Parameters[m.Groups["n"].Value].AsSubstitute());
+        private string SubstituteParameters(string commandText)
+        {
+            if (Parameters.Count == 0)
+            {
+                return commandText;
+            }
+
+            return ParamRegex.Replace(commandText, m => m.Groups["n"].Value == ":" || m.Groups["n"].Value == "@" ? m.Groups["n"].Value : Parameters[m.Groups["n"].Value].AsSubstitute());
+        }
     }
 }
