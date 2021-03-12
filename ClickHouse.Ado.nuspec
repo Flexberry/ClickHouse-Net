@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>
     <id>NewPlatform.Flexberry.ClickHouse.Ado</id>
-    <version>1.3.1-alpha01</version>
+    <version>1.3.1-alpha02</version>
     <authors>Andrey Zakharov, New Platform Ltd.</authors>
     <owners>Andrey Zakharov, New Platform Ltd.</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
